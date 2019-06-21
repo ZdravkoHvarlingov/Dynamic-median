@@ -1,0 +1,4 @@
+#ifndef DYNAMIC_MEDIAN_HPP
+#define DYNAMIC_MEDIAN_HPP
+
+#endif
