@@ -176,3 +176,22 @@ TEST_CASE("MaxHeap push and pop are correct", "[Heap]")
 		}
 	}
 }
+
+TEST_CASE("A lot of negative numbers", "[Heap]")
+{
+	ds::MinMaxHeap maxHeap(false);
+	for (int i = 0; i < 1000000; i++)
+	{
+		maxHeap.Push(-(i + 1));
+	}
+	REQUIRE(maxHeap.GetTop() == -1);
+
+	for (int i = 0; i < 999999; i++)
+	{
+		maxHeap.Pop();
+	}
+	REQUIRE(maxHeap.GetTop() == -1000000);
+
+	maxHeap.Pop();
+	REQUIRE(maxHeap.GetSize() == 0);
+}
