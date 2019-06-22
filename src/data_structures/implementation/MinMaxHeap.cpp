@@ -40,7 +40,7 @@ double ds::MinMaxHeap::GetTop() const
 	return isMin == false ? -elements[1] : elements[1];
 }
 
-size_t ds::MinMaxHeap::GetSize() const
+int ds::MinMaxHeap::GetSize() const
 {
 	return elements.size() - 1;
 }

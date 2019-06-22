@@ -47,7 +47,7 @@ void ds::DynamicMedian::Push(double number)
 	Balance();
 }
 
-size_t ds::DynamicMedian::GetSize() const
+int ds::DynamicMedian::GetSize() const
 {
 	return maxHeap.GetSize() + minHeap.GetSize();
 }

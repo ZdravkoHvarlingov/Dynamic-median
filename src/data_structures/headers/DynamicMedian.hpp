@@ -13,7 +13,7 @@ namespace ds
 
 		double GetMedian() const;
 		void Push(double number);
-		size_t GetSize() const;
+		int GetSize() const;
 
 	private:
 		void Balance();

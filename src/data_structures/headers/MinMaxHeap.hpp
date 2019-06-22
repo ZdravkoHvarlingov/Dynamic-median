@@ -14,7 +14,7 @@ namespace ds
 		void Pop();
 		double GetTop() const;
 
-		size_t GetSize() const;
+		int GetSize() const;
 
 	private:
 
