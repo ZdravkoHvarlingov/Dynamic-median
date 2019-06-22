@@ -1,12 +1,6 @@
 #include "catch.hpp"
 #include "MinMaxHeap.hpp"
-#include <cmath>
-#include <limits>
-
-bool AreEqual(double first, double second)
-{
-	return std::fabs(first - second) < std::numeric_limits<double>::epsilon();
-}
+#include "DoubleEquality.hpp"
 
 TEST_CASE("MinHeap push is correct", "[Heap]")
 {
@@ -37,24 +31,24 @@ TEST_CASE("MinHeap push is correct", "[Heap]")
 		for (int i = 0; i < 100; i++)
 		{
 			minHeap.Push(10);
-			REQUIRE(AreEqual(minHeap.GetTop(), 10));
 		}
+		REQUIRE(AreEqual(minHeap.GetTop(), 10));
 	}
 	SECTION("Pushing in ascending order")
 	{
 		for (int i = 0; i < 100; ++i)
 		{
 			minHeap.Push(i + 1);
-			REQUIRE(AreEqual(minHeap.GetTop(), 1));
 		}
+		REQUIRE(AreEqual(minHeap.GetTop(), 1));
 	}
 	SECTION("Pushing in descending order")
 	{
 		for (int i = 99; i >= 0; --i)
 		{
-			minHeap.Push(i + 1);
-			REQUIRE(AreEqual(minHeap.GetTop(), i + 1));
+			minHeap.Push(i + 1);	
 		}
+		REQUIRE(AreEqual(minHeap.GetTop(), 1));
 	}
 }
 
@@ -87,24 +81,24 @@ TEST_CASE("MaxHeap push is correct", "[Heap]")
 		for (int i = 0; i < 100; i++)
 		{
 			maxHeap.Push(10);
-			REQUIRE(AreEqual(maxHeap.GetTop(), 10));
 		}
+		REQUIRE(AreEqual(maxHeap.GetTop(), 10));
 	}
 	SECTION("Pushing in ascending order")
 	{
 		for (int i = 0; i < 100; ++i)
 		{
 			maxHeap.Push(i + 1);
-			REQUIRE(AreEqual(maxHeap.GetTop(), i + 1));
 		}
+		REQUIRE(AreEqual(maxHeap.GetTop(), 100));
 	}
 	SECTION("Pushing in descending order")
 	{
 		for (int i = 99; i >= 0; --i)
 		{
 			maxHeap.Push(i + 1);
-			REQUIRE(AreEqual(maxHeap.GetTop(), 100));
 		}
+		REQUIRE(AreEqual(maxHeap.GetTop(), 100));
 	}
 }
 
@@ -141,8 +135,8 @@ TEST_CASE("MinHeap push and pop are correct", "[Heap]")
 		for (int i = 0; i < 99; i++)
 		{
 			minHeap.Pop();
-			REQUIRE(AreEqual(minHeap.GetTop(), 10));
 		}
+		REQUIRE(AreEqual(minHeap.GetTop(), 10));
 	}
 }
 
@@ -179,12 +173,12 @@ TEST_CASE("MaxHeap push and pop are correct", "[Heap]")
 		for (int i = 0; i < 99; i++)
 		{
 			maxHeap.Pop();
-			REQUIRE(AreEqual(maxHeap.GetTop(), 10));
 		}
+		REQUIRE(AreEqual(maxHeap.GetTop(), 10));
 	}
 }
 
-TEST_CASE("A lot of negative numbers", "[Heap]")
+TEST_CASE("Push a lot of negative numbers", "[Heap]")
 {
 	ds::MinMaxHeap maxHeap(false);
 	for (int i = 0; i < 1000000; i++)
@@ -193,12 +187,12 @@ TEST_CASE("A lot of negative numbers", "[Heap]")
 	}
 	REQUIRE(AreEqual(maxHeap.GetTop(), -1));
 
-	for (int i = 0; i < 999999; i++)
+	for (int i = 0; i < 500000; i++)
 	{
 		maxHeap.Pop();
 	}
-	REQUIRE(AreEqual(maxHeap.GetTop(), -1000000));
+	REQUIRE(AreEqual(maxHeap.GetTop(), -500001));
 
 	maxHeap.Pop();
-	REQUIRE(maxHeap.GetSize() == 0);
+	REQUIRE(maxHeap.GetSize() == 499999);
 }
